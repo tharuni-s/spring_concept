@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean definitions here -->
+	<bean class="springframework.Student" id="stuobj1">
+		<property name="name" value="abi"></property>
+		<property name="mark" value="100"></property>
+	</bean>
+	<bean class="springframework.Student" id="stuobj2">
+		<property name="name" value="aathy"></property>
+		<property name="mark" value="90"></property>
+	</bean>
+	<bean class="springframework.Student" id="stuobj3">
+		<property name="name" value="alwin"></property>
+		<property name="mark" value="80"></property>
+	</bean>
+	<bean class="springframework.Student" id="stuobj4">
+		<property name="name" value="balaji"></property>
+		<property name="mark" value="30"></property>
+	</bean>
+	<bean class="springframework.Student" id="stuobj5">
+		<property name="name" value="chrisma"></property>
+		<property name="mark" value="40"></property>
+	</bean>
+	<bean class="java.util.ArrayList" id="studentList">
+		<constructor-arg>
+			<list>
+				<ref bean="stuobj1"></ref>
+				<ref bean="stuobj2"></ref>
+				<ref bean="stuobj3"></ref>
+				<ref bean="stuobj4"></ref>
+				<ref bean="stuobj5"></ref>
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean class="StudentListAccessor" id="stuAccessObj">
+	<property name="thirdStudentInList" value="#{studentList[2]}"></property>
+	<property name="failedStudent" value="#{studentList.?[mark lt 40]}"></property>
+	<property name="studentName" value="#{studentList.![name]}"></property>
+	</bean>
+
+</beans>
